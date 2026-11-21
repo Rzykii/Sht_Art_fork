@@ -27,3 +27,59 @@
  .work-image img{height:auto;aspect-ratio:4/5}
  .lightbox{overflow-y:auto}
 }
+/* Evita desbordes horizontales en móvil */
+html,body{overflow-x:clip}
+img{max-width:100%}
+
+/* ---------- Galería: una obra centrada por pantalla ---------- */
+html{scroll-snap-type:y proximity}
+.gallery-grid{grid-template-columns:1fr;gap:0;max-width:760px;margin-inline:auto}
+.work-card,
+.work-card:nth-child(even){
+  margin-top:0;
+  min-height:calc(100vh - 82px);
+  min-height:calc(100dvh - 82px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px 0;text-align:center;
+  scroll-snap-align:center;scroll-margin-top:82px;
+}
+.work-image{display:inline-block;width:auto;max-width:100%;background:transparent}
+.work-image img{
+  width:auto;max-width:100%;height:auto;aspect-ratio:auto;
+  max-height:68vh;max-height:68dvh;object-fit:contain;margin:0 auto;
+  background:var(--surface);
+}
+.work-meta{width:100%;justify-content:center;align-items:center;flex-direction:column;gap:6px;text-align:center}
+.work-description{margin-inline:auto;text-align:center}
+
+@media(max-width:800px){
+  .work-card,.work-card:nth-child(even){min-height:calc(100vh - 70px);min-height:calc(100dvh - 70px);scroll-margin-top:70px;padding:20px 0}
+  .work-image img{max-height:62vh;max-height:62dvh;height:auto}
+  .gallery-section{padding-top:60px}
+}
+@media(max-width:480px){
+  .work-image img{height:auto;aspect-ratio:auto;max-height:60dvh}
+  .work-meta h3{font-size:20px}
+  .gallery-footnote{text-align:center}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
+
+/* ---------- Responsive general (móvil) ---------- */
+@media(max-width:800px){
+  .hero{min-height:auto}
+  .section-heading h2,.about-copy h2,.contact-section h2{font-size:clamp(36px,10vw,52px)}
+  .contact-card strong{font-size:20px}
+  .lightbox{padding:56px 16px 20px;overflow-y:auto}
+  .lightbox-close{right:14px;top:8px}
+  .cart-drawer{width:100%;padding:20px}
+  .shop-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:36px 18px}
+  .chip{padding:10px 16px}
+  .cart-qty button{width:38px;height:38px}
+  .cart-toggle,.login-btn,.theme-toggle{min-height:40px}
+}
+@media(max-width:480px){
+  .shop-grid{grid-template-columns:1fr}
+  .auth-card{padding:28px 20px}
+  .site-header .cart-toggle{padding:8px 10px}
+  .product-buy{flex-wrap:wrap}
+}
