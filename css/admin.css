@@ -2,3 +2,22 @@
 @media(max-width:800px){.admin-wrap{padding:45px 20px}.stats-grid{grid-template-columns:repeat(2,1fr)}.product-form{grid-template-columns:1fr}.wide{grid-column:auto}.admin-header{padding-inline:15px}.admin-user{display:none}}
 @media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr;gap:8px}.stat{padding:15px}.admin-section-head{align-items:start;gap:15px;flex-direction:column}}
 .artwork-preview{display:block;max-width:220px;max-height:220px;object-fit:contain;margin-top:10px;border:1px solid var(--line);background:var(--bg);padding:8px}.admin-section .admin-sub{max-width:650px;margin-top:8px}
+/* 5 tarjetas de estadísticas: se acomodan solas según el ancho */
+.stats-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+
+@media(max-width:800px){
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .admin-section-head{flex-wrap:wrap;gap:12px}
+  .admin-table{font-size:12px}
+  .actions{flex-wrap:wrap}
+  .status-form{flex-wrap:wrap}
+  .status-form select{min-width:140px}
+  .checkout-wrap{margin:35px auto;padding:0 14px 60px}
+  .order-summary p{flex-wrap:wrap}
+  .product-form input,.product-form textarea,.product-form select{font-size:16px} /* evita zoom en iOS */
+}
+@media(max-width:480px){
+  .admin-wrap{padding:35px 14px 70px}
+  .product-form{padding:16px}
+  .form-actions{flex-wrap:wrap}
+}
