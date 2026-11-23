@@ -23,10 +23,10 @@ Este proyecto consiste en el desarrollo de una página web integral tipo portafo
 El proyecto está diseñado bajo la siguiente estructura tecnológica (sujeta a definición según el entorno final):
 
 * **Frontend:** 
-  * HTML5, CSS3, JavaScript / React
+  * HTML5, CSS3, JavaScript
   * **Framework CSS:** Bootstrap (para diseño adaptativo y responsive)
-* **Backend:** Node.js / PHP
-* **Base de Datos:** PostgreSQL / MySQL / MongoDB
+* **Backend:** PHP
+* **Base de Datos:** MySQL
 * **Pasarela de Pagos (Por definir):** 
   * Stripe / PayPal / Mercado Pago
   * Webpay Plus
