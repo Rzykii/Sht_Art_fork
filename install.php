@@ -39,7 +39,7 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS pagos (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
 $pdo->exec("CREATE TABLE IF NOT EXISTS blog_posts (
- id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(180) NOT NULL, excerpt VARCHAR(500) NULL,
+ id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(180) NOT NULL, category VARCHAR(80) NOT NULL DEFAULT 'Novedades', excerpt VARCHAR(500) NULL,
  content LONGTEXT NOT NULL, cover_image VARCHAR(500) NULL,
  status ENUM('draft','published') NOT NULL DEFAULT 'draft',
  author_id INT NULL, published_at DATETIME NULL,
@@ -61,6 +61,7 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS blog_likes (
  FOREIGN KEY (user_id) REFERENCES usuarios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 $extraColumns = [
+ 'stock_reintegrado' => "TINYINT(1) NOT NULL DEFAULT 0",
  'apellidos' => "VARCHAR(120) NULL",
  'rut' => "VARCHAR(15) NULL",
  'region' => "VARCHAR(120) NULL",
@@ -79,6 +80,23 @@ foreach ($extraColumns as $column => $definition) {
     $check->execute([$column]);
     if (!(int)$check->fetchColumn()) $pdo->exec("ALTER TABLE pedidos ADD COLUMN `$column` $definition");
 }
+
+
+$paymentColumns = [
+ 'preference_id' => "VARCHAR(190) NULL",
+ 'mp_order_id' => "VARCHAR(190) NULL",
+ 'payment_id' => "VARCHAR(190) NULL",
+ 'external_reference' => "VARCHAR(190) NULL",
+ 'raw_response' => "LONGTEXT NULL",
+ 'updated_at' => "DATETIME NULL"
+];
+foreach ($paymentColumns as $column => $definition) {
+    $check = $pdo->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='pagos' AND COLUMN_NAME=?");
+    $check->execute([$column]);
+    if (!(int)$check->fetchColumn()) $pdo->exec("ALTER TABLE pagos ADD COLUMN `$column` $definition");
+}
+$blogCategory = $pdo->query("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='blog_posts' AND COLUMN_NAME='category'")->fetchColumn();
+if (!(int)$blogCategory) $pdo->exec("ALTER TABLE blog_posts ADD COLUMN category VARCHAR(80) NOT NULL DEFAULT 'Novedades' AFTER title");
 
 $exists = $pdo->query("SELECT id FROM usuarios WHERE username='admin'")->fetchColumn();
 if (!$exists) {
@@ -104,11 +122,11 @@ if (!$count) {
 
 <body style="font:16px Arial;max-width:650px;margin:50px auto;line-height:1.6">
     <h1>Instalación completada</h1>
-    <p>Se crearon o actualizaron las tablas de tienda, pedidos y blog. También se agregaron productos de ejemplo si el catálogo estaba vacío.</p>
+    <p>Se crearon o actualizaron las tablas de tienda, pedidos, pagos y blog. También se agregaron los campos para Mercado Pago si aún no existían y productos de ejemplo si el catálogo estaba vacío.</p>
     <p><b>Usuario:</b> admin<br><b>Contraseña inicial:</b> admin123</p>
     <p>Inicia sesión y cambia la contraseña antes de publicar el sitio.</p>
     <p><a href="login.php">Ir al inicio de sesión</a></p>
-    <p><b>Importante:</b> elimina o renombra install.php después de instalar.</p>
+    <p><b>Importante:</b> configura MERCADOPAGO_ACCESS_TOKEN, MERCADOPAGO_WEBHOOK_SECRET y APP_URL en el servidor. Después elimina o renombra install.php.</p>
 </body>
 
 </html>
