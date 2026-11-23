@@ -1,0 +1,6 @@
+<?php
+// Copia este archivo como mercadopago.local.php y completa tus credenciales.
+// No subas mercadopago.local.php a Git ni compartas estos valores.
+$MP_LOCAL_ACCESS_TOKEN = 'TEST-PEGA_AQUI_TU_ACCESS_TOKEN';
+$MP_LOCAL_WEBHOOK_SECRET = 'PEGA_AQUI_TU_CLAVE_SECRETA_DE_WEBHOOK';
+$MP_LOCAL_APP_URL = 'https://tudominio.cl/Sht_art_actualizado';

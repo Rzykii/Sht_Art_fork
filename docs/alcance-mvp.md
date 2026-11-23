@@ -33,7 +33,10 @@ La primera versión incluirá las siguientes funcionalidades:
 ### 3.3 Información de las obras
 - Descripción individual de las ilustraciones.
 - Información sobre el contexto o momento de creación.
+<<<<<<< HEAD
 - Presentación clara de cada obra.
+=======
+>>>>>>> feature/cambios
 
 ### 3.4 Sección de contacto
 - Enlace al correo electrónico del artista.
