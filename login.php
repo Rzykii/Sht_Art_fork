@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post">
                 <div class="field"><label for="username">Usuario</label><input id="username" name="username" required autocomplete="username"></div>
                 <div class="field"><label for="password">Contraseña</label><input id="password" name="password" type="password" required autocomplete="current-password"></div><button class="button button-primary" type="submit">Entrar</button>
-            </form><a class="auth-back text-link" href="index.php">← Volver al portafolio</a>
+            </form><a class="auth-back text-link" href="register.php">Crear una cuenta</a><a class="auth-back text-link" href="index.php">← Volver al portafolio</a>
         </section>
     </main>
 </body>

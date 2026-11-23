@@ -349,6 +349,7 @@ $stats = [
         <nav class="main-nav" id="navegacion-principal" aria-label="Navegación de administración">
             <a href="index.php">Ver portafolio</a>
             <a href="tienda.php">Ver tienda</a>
+            <a href="blog-admin.php">Gestionar blog</a>
             <a href="cambiar_password.php">Cambiar contraseña</a>
         </nav>
         <div class="header-actions">

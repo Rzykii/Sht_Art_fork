@@ -36,7 +36,7 @@ if (!$works) $works = $demo;
 <header class="site-header">
   <a class="brand" href="#inicio" aria-label="SHT, inicio"><span class="brand-mark">S</span><span>SHT<span class="brand-dot">.</span></span></a>
   <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navegacion-principal">☰</button>
-  <nav class="main-nav" id="navegacion-principal" aria-label="Navegación principal"><a href="#galeria">Galería</a><a href="#sobre">Sobre SHT</a><a href="#contacto">Contacto</a><a class="nav-shop" href="tienda.php">Tienda <span aria-hidden="true"></span></a></nav>
+  <nav class="main-nav" id="navegacion-principal" aria-label="Navegación principal"><a href="#galeria">Galería</a><a href="#sobre">Sobre SHT</a><a href="blog.php">Blog</a><a href="#contacto">Contacto</a><a class="nav-shop" href="tienda.php">Tienda <span aria-hidden="true">🛒</span></a></nav>
   <div class="header-actions">
     <button class="theme-toggle" type="button" aria-label="Cambiar a tema claro"><span class="theme-icon">☼</span><span class="theme-label">Modo claro</span></button>
     <?php if (!empty($_SESSION['user_id']) && ($_SESSION['rol'] ?? '') === 'admin'): ?><a class="login-btn" href="admin.php">Administración</a><?php endif; ?>
@@ -50,13 +50,13 @@ if (!$works) $works = $demo;
 <main id="contenido">
   <section class="hero" id="inicio">
     <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
-    <div class="hero-copy"><p class="eyebrow"><span></span> ILUSTRACIONES Y OBRAS...</p><h1>Explora los suburbios,<br><em>del arte.</em></h1><p class="hero-lead">Sé bienvenido al universo visual de <strong>SHT</strong>. Explora y descubre ilustraciones, lienzos, y comisiones personalizadas hechas a mano y con cariño.</p><div class="hero-actions"><a class="button button-primary" href="#galeria">Explorar obras <span>↘</span></a><a class="text-link" href="#sobre">Conocer al artista <span>→</span></a></div></div>
-    <div class="hero-art" aria-label="Composición abstracta decorativa"><div class="art-frame"><img src="<?= htmlspecialchars($works[0]['image'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($works[0]['title'], ENT_QUOTES, 'UTF-8') ?>"></div><div class="art-sticker">ARTE<br>INDEPENDIENTE</div><div class="art-caption"><span>01 / OBRA DESTACADA</span><span>✳</span></div></div>
+    <div class="hero-copy"><p class="eyebrow"><span></span> PORTAFOLIO DE ILUSTRACIÓN</p><h1>Un mundo propio,<br><em>trazo a trazo.</em></h1><p class="hero-lead">Bienvenido al universo visual de <strong>SHT</strong>. Un espacio para descubrir ilustraciones, ideas y pequeños mundos hechos a mano.</p><div class="hero-actions"><a class="button button-primary" href="#galeria">Explorar obras <span>↘</span></a><a class="text-link" href="#sobre">Conocer al artista <span>→</span></a></div></div>
+    <div class="hero-art" aria-label="Composición abstracta decorativa"><div class="art-frame"><img src="<?= htmlspecialchars($works[0]['image'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($works[0]['title'], ENT_QUOTES, 'UTF-8') ?>"></div><div class="art-sticker">ARTE<br>INDEPENDIENTE</div><div class="art-caption"><span>01 / UNIVERSO SHT</span><span>✳</span></div></div>
     <a class="scroll-cue" href="#galeria"><span class="scroll-line"></span> DESLIZA PARA EXPLORAR</a>
   </section>
-  <section class="intro-strip"><p>ILUSTRACIÓN · COLOR · EXPERIMENTACIÓN</p><span>✳</span><p>UNA MIRADA PERSONAL A MI ARTE</p></section>
+  <section class="intro-strip"><p>ILUSTRACIÓN · COLOR · EXPERIMENTACIÓN</p><span>✳</span><p>UNA MIRADA PERSONAL AL ARTE</p></section>
   <section class="gallery-section section-wrap" id="galeria">
-    <div class="section-heading"><div><p class="eyebrow">01 — SELECCIÓN DE TRABAJOS DESTACADOS</p><h2>La <em>galería</em></h2></div><p class="section-note">Conoce algunas de mis obras más relevantes,<br>y sumergete de lleno en una exploración sin limites.</p></div>
+    <div class="section-heading"><div><p class="eyebrow">01 — SELECCIÓN DE TRABAJOS</p><h2>La <em>galería</em></h2></div><p class="section-note">Cada pieza guarda una idea, un momento<br>o una historia. Explora sin prisa.</p></div>
     <div class="gallery-grid">
     <?php foreach ($works as $i=>$w): ?>
       <article class="work-card reveal" style="--delay:<?= (int)($i%4)*90 ?>ms">
@@ -66,10 +66,10 @@ if (!$works) $works = $demo;
       </article>
     <?php endforeach; ?>
     </div>
-    <p class="gallery-footnote" style="text-align: center;">SHT - Art, todos los derechos reservados.</p>
+    <p class="gallery-footnote">Las imágenes ilustrativas de esta versión deben reemplazarse por las obras y textos definitivos del artista.</p>
   </section>
-  <section class="about-section" id="sobre"><div class="about-inner section-wrap"><div class="about-symbol">S<span>✳</span></div><div class="about-copy"><p class="eyebrow">02 — DETRÁS DE LAS OBRAS</p><h2>Hola, soy <em>SHT.</em></h2><p>Me apasiona crear ilustraciones y mi visión del mundo para compartirla con las demás personas. Espero que disfrutes de mi contenido creado, así como yo disfruto creándolo. Sientete libre de contactarme para colaboraciones o proyectos de todo tipo.</p><p class="about-small">Gracias por tomarte el tiempo de visitar mi sitio, te deseo un excelente día.</p><a class="text-link" href="#contacto">Hablemos de proyectos <span>→</span></a></div></div></section>
-  <section class="contact-section section-wrap" id="contacto"><div><p class="eyebrow">03 — CONVERSEMOS</p><h2>¿Tienes una idea<br>en <em>mente?</em></h2><p class="contact-lead">Para consultas, colaboraciones o proyectos, puedes contactarme directamente por mis redes.</p></div><div class="contact-links"><a href="mailto:correo@ejemplo.com" class="contact-card"><span>Correo electrónico</span><strong>Escríbeme <b>↗</b></strong><small>correo@ejemplo.com · reemplazar</small></a><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="contact-card"><span>Instagram</span><strong>Ver perfil <b>↗</b></strong><small>@usuario · reemplazar enlace</small></a></div></section>
+  <section class="about-section" id="sobre"><div class="about-inner section-wrap"><div class="about-symbol">S<span>✳</span></div><div class="about-copy"><p class="eyebrow">02 — DETRÁS DE LAS OBRAS</p><h2>Hola, soy <em>SHT.</em></h2><p>Este espacio reúne ilustraciones, experimentos visuales y procesos creativos. Cada obra es una invitación a mirar con curiosidad y encontrar una historia propia.</p><p class="about-small">Este texto es provisional: aquí irá la presentación personal que el artista quiera compartir.</p><a class="text-link" href="#contacto">Hablemos de proyectos <span>→</span></a></div></div></section>
+  <section class="contact-section section-wrap" id="contacto"><div><p class="eyebrow">03 — CONVERSEMOS</p><h2>¿Tienes una idea<br>en <em>mente?</em></h2><p class="contact-lead">Para consultas, colaboraciones o proyectos, puedes contactar directamente al artista.</p></div><div class="contact-links"><a href="mailto:correo@ejemplo.com" class="contact-card"><span>Correo electrónico</span><strong>Escríbeme <b>↗</b></strong><small>correo@ejemplo.com · reemplazar</small></a><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="contact-card"><span>Instagram</span><strong>Ver perfil <b>↗</b></strong><small>@usuario · reemplazar enlace</small></a></div></section>
 </main>
 <footer class="site-footer"><a class="brand" href="#inicio"><span class="brand-mark">S</span><span>SHT<span class="brand-dot">.</span></span></a><p>Un universo ilustrado, hecho con intención.</p><a href="#inicio" class="back-top">VOLVER ARRIBA ↑</a><small>© <?= date('Y') ?> SHT · Portafolio artístico</small></footer>
 <div class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de la obra" hidden><button class="lightbox-close" aria-label="Cerrar">×</button><img src="" alt=""><div class="lightbox-copy"><h3></h3><p></p></div></div>

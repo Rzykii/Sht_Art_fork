@@ -1,0 +1,10 @@
+<?php
+require 'config/database.php';require 'includes/auth.php';require 'includes/csrf.php';
+$error='';if($_SERVER['REQUEST_METHOD']==='POST'){verify_csrf();$u=trim($_POST['username']??'');$p=$_POST['password']??'';$confirm=$_POST['confirm']??'';
+ if(mb_strlen($u)<3||mb_strlen($u)>50)$error='El usuario debe tener entre 3 y 50 caracteres.';
+ elseif(strlen($p)<8)$error='La contraseña debe tener al menos 8 caracteres.';
+ elseif($p!==$confirm)$error='Las contraseñas no coinciden.';
+ else{try{$s=$pdo->prepare("INSERT INTO usuarios(username,password,rol) VALUES(?,?,'usuario')");$s->execute([$u,password_hash($p,PASSWORD_DEFAULT)]);session_regenerate_id(true);$_SESSION['user_id']=(int)$pdo->lastInsertId();$_SESSION['username']=$u;$_SESSION['rol']='usuario';header('Location: blog.php');exit;}catch(Throwable $e){$error='Ese nombre de usuario ya está registrado.';}}
+}
+?>
+<!doctype html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Crear cuenta — SHT</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/tienda.css"></head><body><main class="auth-page"><section class="auth-card"><p class="eyebrow">COMUNIDAD SHT</p><h1>Crear <em>cuenta</em></h1><p class="auth-lead">Regístrate para comentar y reaccionar a las publicaciones.</p><?php if($error):?><p class="auth-error"><?=h($error)?></p><?php endif;?><form method="post"><?=csrf_field()?><div class="field"><label>Nombre de usuario</label><input name="username" minlength="3" maxlength="50" required autocomplete="username"></div><div class="field"><label>Contraseña</label><input type="password" name="password" minlength="8" required autocomplete="new-password"></div><div class="field"><label>Repetir contraseña</label><input type="password" name="confirm" minlength="8" required autocomplete="new-password"></div><button class="button button-primary" type="submit">Crear cuenta</button></form><a class="auth-back text-link" href="login.php">Ya tengo cuenta · Iniciar sesión</a></section></main></body></html>
