@@ -1,0 +1,7 @@
+<?php
+// Copia como database.local.php y completa los valores del panel MySQL del hosting.
+// No subas database.local.php a Git.
+$DB_LOCAL_HOST = 'sqlXXX.infinityfree.com';
+$DB_LOCAL_NAME = 'if0_XXXXXXXX_sht_art';
+$DB_LOCAL_USER = 'if0_XXXXXXXX';
+$DB_LOCAL_PASS = 'TU_PASSWORD_MYSQL';
