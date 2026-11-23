@@ -1,2 +1,3 @@
 /config/mercadopago.local.php
+/config/database.local.php
 /.env
